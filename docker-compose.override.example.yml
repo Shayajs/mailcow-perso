@@ -1,0 +1,34 @@
+# Copier vers docker-compose.override.yml (fichier ignoré par git) :
+#   cp docker-compose.override.example.yml docker-compose.override.yml
+#
+# Prérequis : réseaux Docker existants sur l’hôte :
+#   - www_laravel_net (NPM / stack Laravel)
+#   - brightshell_brightshell_internal (réseau interne du projet brightshell, nom par défaut si dossier = brightshell)
+# Si le nom diffère : docker network ls | grep brightshell
+
+services:
+  postfix-mailcow:
+    networks:
+      npm_laravel_net:
+        aliases:
+          - mailcow-smtp
+      brightshell_internal:
+        aliases:
+          - mailcow-smtp
+
+  dovecot-mailcow:
+    networks:
+      npm_laravel_net:
+        aliases:
+          - mailcow-imap
+      brightshell_internal:
+        aliases:
+          - mailcow-imap
+
+networks:
+  npm_laravel_net:
+    external: true
+    name: www_laravel_net
+  brightshell_internal:
+    external: true
+    name: brightshell_brightshell_internal
