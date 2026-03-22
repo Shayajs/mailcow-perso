@@ -2,6 +2,13 @@
 
 Fichiers sensibles (ne pas commiter) : `mailcow.conf`, `docker-compose.override.yml`, `data/assets/ssl/`.
 
+## Git : remotes
+
+- **`origin`** → ton dépôt : `git@github.com:Shayajs/mailcow-perso.git` (push / pull de ta copie).
+- **`upstream`** → Mailcow officiel : mises à jour avec `git fetch upstream` puis `git merge upstream/master` (ou rebase), puis `git push origin master`.
+
+Le dépôt a été passé en **non-shallow** pour pouvoir pousser tout l’historique ; un clone `--depth 1` seul provoquait une erreur côté GitHub.
+
 ## 0. Local (Cursor / WSL) vs VPS OVH
 
 Ce dépôt peut être préparé **en local** : les conteneurs Docker et `mailcow.conf` avec mots de passe générés ne tournent pas sur ton serveur tant que tu n’as pas déployé là-bas.
