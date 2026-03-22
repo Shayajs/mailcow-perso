@@ -19,6 +19,8 @@ Ce dépôt peut être préparé **en local** : les conteneurs Docker et `mailcow
 2. Vérifier **`IPV4_NETWORK`** : `docker network ls` puis `docker network inspect <nom>` — choisir un préfixe `/24` Mailcow **sans chevauchement** (voir commentaire dans `mailcow.conf`).
 3. `docker compose pull` et `docker compose up -d` **sur le serveur** uniquement quand DNS / pare-feu sont prêts ou pour un test avec IP directe.
 
+**Profil léger (défaut dans `mailcow.conf.example`) :** `SKIP_CLAMD=y`, `SKIP_OLEFY=y`, `SKIP_FTS=y` — moins de RAM et de CPU pour héberger d’autres sites sur le même VPS. **Rspamd** (filtre antispam) et **TLS / auth** restent en place ; ce n’est pas « zéro sécurité », seulement pas d’antivirus fichiers ni d’index de recherche dans les boîtes. Après changement : `docker compose up -d`.
+
 ## 1. Sur le VPS OVH
 
 - Installer les prérequis Mailcow : Docker 24+, Docker Compose plugin, **jq**, git, curl.
